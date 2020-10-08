@@ -1,5 +1,5 @@
 resource "aws_lambda_function" "lambda" {
-    function_name = "app-${var.env-lambda_name}-${var.lambda_stage}"
+    function_name = "app-${var.lambda_name}-${var.lambda_stage}"
     handler = var.lambda_handler
     runtime = "python3.8"
 
