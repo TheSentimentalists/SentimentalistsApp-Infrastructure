@@ -34,3 +34,11 @@ resource "aws_api_gateway_deployment" "apig" {
    rest_api_id = aws_api_gateway_rest_api.apig.id
    stage_name  = var.apig_stage
 }
+
+resource "aws_lambda_permission" "apigw" {
+   statement_id  = "AllowAPIGatewayInvoke"
+   action        = "lambda:InvokeFunction"
+   function_name = var.lambda_function_name
+   principal     = "apigateway.amazonaws.com"
+   source_arn = "${aws_api_gateway_rest_api.apig.execution_arn}/*/*"
+}

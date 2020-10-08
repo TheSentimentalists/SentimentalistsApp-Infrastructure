@@ -12,3 +12,8 @@ variable "apig_name" {
 variable "lambda_arn" {
     type = string
 }
+
+# Lambda Function Name
+variable "lambda_function_name" {
+    type = string
+}
