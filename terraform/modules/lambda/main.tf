@@ -10,7 +10,7 @@ resource "aws_lambda_function" "lambda" {
 }
 
 resource "aws_iam_role" "lambda_exec" {
-   name = "role-${var.env-lambda_name}-${var.lambda_stage}"
+   name = "role-${var.lambda_name}-${var.lambda_stage}"
 
    assume_role_policy = <<EOF
 {
