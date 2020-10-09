@@ -103,3 +103,6 @@ jobs:
       working-directory: ./infra
       id: apply
       run: terraform apply -auto-approve -no-color
+      env:
+        AWS_ACCESS_KEY_ID: ${{ secrets.AWS_TERRAFORM_ACCESS_ID }}
+        AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_TERRAFORM_ACCESS_SECRET }}
