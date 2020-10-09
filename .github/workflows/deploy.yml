@@ -1,7 +1,14 @@
 name: Deploy to AWS
 
 on:
-  [push, pull_request]:
+  push:
+    branches:
+    - master
+    - staging
+    paths:
+    - 'src/**'
+    - 'infra/**'
+  pull_request:
     branches:
     - master
     - staging
