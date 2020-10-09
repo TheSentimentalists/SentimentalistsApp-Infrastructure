@@ -43,6 +43,7 @@ jobs:
       uses: hashicorp/setup-terraform@v1
 
     - name: Terraform fmt
+      if: github.event_name == 'pull_request'
       working-directory: ./infra
       id: fmt
       run: terraform fmt -check
@@ -57,11 +58,13 @@ jobs:
         AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_TERRAFORM_ACCESS_SECRET }}
 
     - name: Terraform Validate
+      if: github.event_name == 'pull_request'
       working-directory: ./infra
       id: validate
       run: terraform validate -no-color
 
     - name: Terraform Plan
+      if: github.event_name == 'pull_request'
       working-directory: ./infra
       id: plan
       run: terraform plan -no-color
