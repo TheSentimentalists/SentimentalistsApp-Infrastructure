@@ -1,2 +1,2 @@
 def lambda_handler(event, context):
-    return "hello world 11"
+    return {"helloworld":"12"}
