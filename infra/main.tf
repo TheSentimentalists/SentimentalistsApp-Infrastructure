@@ -19,7 +19,7 @@ module "backend-lambda" {
   source         = "github.com/TheSentimentalists/SentimentalistsApp-Infrastructure/terraform/modules/lambda"
   lambda_stage   = "prod"
   lambda_name    = "sentimentalistsapp-testtest-backend"
-  lambda_payload = "../payload.zip"
+  lambda_payload = "../src/payload.zip"
 }
 
 module "backend-apig" {

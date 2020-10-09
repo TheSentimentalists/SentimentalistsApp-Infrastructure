@@ -97,3 +97,9 @@ jobs:
            repo: context.repo.repo,
            body: output
           })
+
+    - name: Merge - Apply TF
+      if: github.event_name == 'push'
+      working-directory: ./infra
+      id: apply
+      run: terraform apply -auto-approve -no-color
