@@ -52,6 +52,9 @@ jobs:
       working-directory: ./infra
       id: init
       run: terraform init
+      env:
+        AWS_ACCESS_KEY_ID: ${{ secrets.AWS_TERRAFORM_ACCESS_ID }}
+        AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_TERRAFORM_ACCESS_SECRET }}
 
     - name: Terraform Validate
       working-directory: ./infra
