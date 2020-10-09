@@ -86,5 +86,3 @@ jobs:
           repo: context.repo.repo,
           body: output
         })
-    - name: Apply terraform
-      
