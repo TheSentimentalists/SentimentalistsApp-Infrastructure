@@ -23,38 +23,43 @@ jobs:
     steps:
     - name: Checkout repo
       uses: actions/checkout@v2
+
     - name: Set up Python 3.8
       uses: actions/setup-python@v2
       with:
         python-version: 3.8
+
     - name: Install dependencies
+      working-directory: ./src
       run: |
-        cd src
         python -m pip install --upgrade pip
         if [ -f requirements.txt ]; then pip install -r requirements.txt --target .; fi
     - name: Build a package
+      working-directory: ./src
       run: |
         zip -r9 payload.zip .
+
     - name: Setup terraform
       uses: hashicorp/setup-terraform@v1
 
-    - name: Move to infra directory
-      run: cd ../infra
-
     - name: Terraform fmt
+      working-directory: ./infra
       id: fmt
       run: terraform fmt -check
       continue-on-error: true
 
     - name: Terraform Init
+      working-directory: ./infra
       id: init
       run: terraform init
 
     - name: Terraform Validate
+      working-directory: ./infra
       id: validate
       run: terraform validate -no-color
 
     - name: Terraform Plan
+      working-directory: ./infra
       id: plan
       run: terraform plan -no-color
       continue-on-error: true
