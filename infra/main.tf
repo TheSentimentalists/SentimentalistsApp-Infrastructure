@@ -36,3 +36,9 @@ module "backend-apig-lambdaresource" {
   lambda_arn           = module.backend-lambda.apig_invoke_arn
   lambda_function_name = module.backend-lambda.apig_function_name
 }
+
+module "backend-apig-deployment" {
+  source               = "github.com/TheSentimentalists/SentimentalistsApp-Infrastructure/terraform/modules/apigateway_deploy"
+  apig_id              = module.backend-apig.apig_id
+  apig_stage           = "prod"
+}

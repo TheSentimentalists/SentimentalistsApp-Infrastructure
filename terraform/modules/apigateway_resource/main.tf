@@ -41,15 +41,6 @@ resource "aws_api_gateway_integration_response" "proxy" {
     }
 }
 
-resource "aws_api_gateway_deployment" "apig" {
-   depends_on = [
-     aws_api_gateway_integration.lambda
-   ]
-
-   rest_api_id = var.apig_id
-   stage_name  = "prod"
-}
-
 resource "aws_lambda_permission" "apigw" {
    statement_id  = "AllowAPIGatewayInvoke"
    action        = "lambda:InvokeFunction"
