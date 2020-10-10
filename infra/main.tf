@@ -24,7 +24,6 @@ module "backend-lambda" {
 
 module "backend-apig" {
   source               = "github.com/TheSentimentalists/SentimentalistsApp-Infrastructure/terraform/modules/apigateway"
-  apig_stage           = "prod"
   apig_name            = "sentimentalistsapp-testtest-backend"
 }
 
