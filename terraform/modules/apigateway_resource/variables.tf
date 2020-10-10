@@ -15,10 +15,10 @@ variable "apig_id" {
 
 # APIG Root ID
 variable "apig_root_id" {
-    type = "string"
+    type = string
 }
 
 # APIG Execution ARN
 variable "apig_execution_arn" {
-    type = "string"
+    type = string
 }
