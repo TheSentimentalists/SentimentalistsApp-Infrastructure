@@ -29,6 +29,10 @@ resource "aws_api_gateway_method_response" "lambda" {
     response_parameters = { 
         "method.response.header.Access-Control-Allow-Origin" = true 
     }
+
+    depends_on = [
+        aws_api_gateway_integration.lambda
+    ]
 }
 
 resource "aws_api_gateway_integration_response" "lambda" {
@@ -39,6 +43,9 @@ resource "aws_api_gateway_integration_response" "lambda" {
     response_parameters = { 
         "method.response.header.Access-Control-Allow-Origin" = "'*'" 
     }
+    depends_on = [
+        aws_api_gateway_integration.lambda
+    ]
 }
 
 resource "aws_lambda_permission" "apig_resource" {
