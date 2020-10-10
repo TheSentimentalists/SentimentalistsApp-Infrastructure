@@ -1,7 +1,7 @@
 terraform {
   backend "s3" {
     bucket  = "sentimentalists-terraform"
-    key     = "testtest-terraform"
+    key     = "SentimentalistsApp-Infrastructure"
     region  = "eu-west-2"
   }
   required_providers {
@@ -17,14 +17,14 @@ provider "aws" {
 
 module "backend-lambda" {
   source         = "github.com/TheSentimentalists/SentimentalistsApp-Infrastructure/terraform/modules/lambda"
-  lambda_stage   = "prod"
-  lambda_name    = "sentimentalistsapp-testtest-backend"
-  lambda_payload = "../src/payload.zip"
+  lambda_stage   = var.stage
+  lambda_name    = "SentimentalistsApp-Infrastructure"
+  lambda_payload = var.payload
 }
 
 module "backend-apig" {
   source               = "github.com/TheSentimentalists/SentimentalistsApp-Infrastructure/terraform/modules/apigateway"
-  apig_name            = "sentimentalistsapp-testtest-backend"
+  apig_name            = "SentimentalistsApp-Infrastructure"
 }
 
 module "backend-apig-lambdaresource" {
@@ -39,5 +39,6 @@ module "backend-apig-lambdaresource" {
 module "backend-apig-deployment" {
   source               = "github.com/TheSentimentalists/SentimentalistsApp-Infrastructure/terraform/modules/apigateway_deploy"
   apig_id              = module.backend-apig.apig_id
-  apig_stage           = "prod"
+  apig_stage           = var.stage
+  depends_on           = [module.backend-apig-lambdaresource]
 }
