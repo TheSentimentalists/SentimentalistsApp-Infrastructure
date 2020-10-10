@@ -42,7 +42,7 @@ resource "aws_api_gateway_integration_response" "proxy" {
     http_method = aws_api_gateway_method.proxy.http_method
     status_code = aws_api_gateway_method_response.proxy.status_code
     response_parameters = { 
-        "method.response.header.Access-Control-Allow-Origin	" = "'*'" 
+        "method.response.header.Access-Control-Allow-Origin	" = "*" 
     }
 }
 
