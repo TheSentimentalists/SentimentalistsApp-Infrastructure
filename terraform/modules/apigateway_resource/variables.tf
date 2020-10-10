@@ -17,3 +17,8 @@ variable "apig_id" {
 variable "apig_root_id" {
     type = "string"
 }
+
+# APIG Execution ARN
+variable "apig_execution_arn" {
+    type = "string"
+}
