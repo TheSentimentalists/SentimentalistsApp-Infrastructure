@@ -1,41 +1,41 @@
-resource "aws_api_gateway_resource" "apig_resource" {
+resource "aws_api_gateway_resource" "lambda" {
    rest_api_id = var.apig_id
    parent_id   = var.apig_root_id
    path_part   = "analysis"
 }
 
-resource "aws_api_gateway_method" "apig_resource" {
+resource "aws_api_gateway_method" "lambda" {
    rest_api_id = var.apig_id
-   resource_id   = aws_api_gateway_resource.apig_resource.id
+   resource_id   = aws_api_gateway_resource.lambda.id
    http_method   = "POST"
    authorization = "NONE"
 }
 
-resource "aws_api_gateway_integration" "apig_resource" {
+resource "aws_api_gateway_integration" "lambda" {
    rest_api_id = var.apig_id
-   resource_id = aws_api_gateway_method.apig_resource.resource_id
-   http_method = aws_api_gateway_method.apig_resource.http_method
+   resource_id = aws_api_gateway_method.lambda.resource_id
+   http_method = aws_api_gateway_method.lambda.http_method
 
    integration_http_method = "POST"
    type                    = "AWS"
    uri                     = var.lambda_arn
 }
 
-resource "aws_api_gateway_method_response" "apig_resource" {
+resource "aws_api_gateway_method_response" "lambda" {
     rest_api_id = var.apig_id
-    resource_id = aws_api_gateway_method.apig_resource.resource_id
-    http_method = aws_api_gateway_method.apig_resource.http_method
+    resource_id = aws_api_gateway_method.lambda.resource_id
+    http_method = aws_api_gateway_method.lambda.http_method
     status_code = "200"
     response_parameters = { 
         "method.response.header.Access-Control-Allow-Origin" = true 
     }
 }
 
-resource "aws_api_gateway_integration_response" "apig_resource" {
+resource "aws_api_gateway_integration_response" "lambda" {
     rest_api_id = var.apig_id
-    resource_id = aws_api_gateway_method.apig_resource.resource_id
-    http_method = aws_api_gateway_method.apig_resource.http_method
-    status_code = aws_api_gateway_method_response.apig_resource.status_code
+    resource_id = aws_api_gateway_method.lambda.resource_id
+    http_method = aws_api_gateway_method.lambda.http_method
+    status_code = aws_api_gateway_method_response.lambda.status_code
     response_parameters = { 
         "method.response.header.Access-Control-Allow-Origin" = "'*'" 
     }
