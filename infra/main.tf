@@ -26,6 +26,12 @@ module "backend-apig" {
   source               = "github.com/TheSentimentalists/SentimentalistsApp-Infrastructure/terraform/modules/apigateway"
   apig_stage           = "prod"
   apig_name            = "sentimentalistsapp-testtest-backend"
+}
+
+module "backend-apig-lambdaresource" {
+  source               = "github.com/TheSentimentalists/SentimentalistsApp-Infrastructure/terraform/modules/apigateway_resource"
+  apig_id              = module.backend-apig.apig_id
+  apig_root_id         = module.backend-apig.apig_root_id
   lambda_arn           = module.backend-lambda.apig_invoke_arn
   lambda_function_name = module.backend-lambda.apig_function_name
 }
