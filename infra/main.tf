@@ -32,6 +32,7 @@ module "backend-apig-lambdaresource" {
   source               = "github.com/TheSentimentalists/SentimentalistsApp-Infrastructure/terraform/modules/apigateway_resource"
   apig_id              = module.backend-apig.apig_id
   apig_root_id         = module.backend-apig.apig_root_id
+  apig_execution_arn   = module.backend-apig.apig_execution_arn
   lambda_arn           = module.backend-lambda.apig_invoke_arn
   lambda_function_name = module.backend-lambda.apig_function_name
 }
