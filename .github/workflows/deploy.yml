@@ -75,7 +75,7 @@ jobs:
       if: github.event_name == 'pull_request'
       working-directory: ./infra/test
       id: plan
-      run: terraform plan -no-color -var="stage=prod" -var="payload=../src/payload.zip"
+      run: terraform plan -no-color -var="stage=prod" -var="payload=../../src/payload.zip"
       continue-on-error: true
       env:
         AWS_ACCESS_KEY_ID: ${{ secrets.AWS_TERRAFORM_ACCESS_ID }}
@@ -113,7 +113,7 @@ jobs:
       if: github.event_name == 'push'
       working-directory: ./infra/test
       id: apply
-      run: terraform apply -auto-approve -no-color -var="stage=prod" -var="payload=../src/payload.zip"
+      run: terraform apply -auto-approve -no-color -var="stage=prod" -var="payload=../../src/payload.zip"
       env:
         AWS_ACCESS_KEY_ID: ${{ secrets.AWS_TERRAFORM_ACCESS_ID }}
         AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_TERRAFORM_ACCESS_SECRET }}
