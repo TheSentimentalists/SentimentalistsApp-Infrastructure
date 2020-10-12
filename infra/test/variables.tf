@@ -6,5 +6,5 @@ variable "stage" {
 # Payload
 variable "payload" {
   type = string
-  default = "../src/payload.zip"
+  default = "../../src/payload.zip"
 }
