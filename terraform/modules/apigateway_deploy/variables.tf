@@ -1,9 +1,9 @@
 # APIG ID
 variable "apig_id" {
-    type = string
+  type = string
 }
 
 # APIG Stage
 variable "apig_stage" {
-    type = string
+  type = string
 }
