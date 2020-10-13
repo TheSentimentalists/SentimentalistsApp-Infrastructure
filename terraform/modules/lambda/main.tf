@@ -2,6 +2,7 @@ resource "aws_lambda_function" "lambda" {
     function_name = "app-${var.lambda_name}-${var.lambda_stage}"
     handler = var.lambda_handler
     runtime = "python3.8"
+    timeout = 10
 
     filename = var.lambda_payload
     source_code_hash = filebase64sha256(var.lambda_payload)
