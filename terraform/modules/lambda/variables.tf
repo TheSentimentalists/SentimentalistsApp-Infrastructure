@@ -10,12 +10,12 @@ variable "lambda_name" {
 
 # Lambda Handler
 variable "lambda_handler" {
-    type = string
-    default = "lambda_function.lambda_handler"
+  type    = string
+  default = "lambda_function.lambda_handler"
 }
 
 # Payload
 variable "lambda_payload" {
-    type = string
-    default = "payload.zip"
+  type    = string
+  default = "payload.zip"
 }

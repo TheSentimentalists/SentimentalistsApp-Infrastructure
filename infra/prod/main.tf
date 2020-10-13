@@ -1,8 +1,8 @@
 terraform {
   backend "s3" {
-    bucket  = "sentimentalists-terraform"
-    key     = "shared-prod"
-    region  = "eu-west-2"
+    bucket = "sentimentalists-terraform"
+    key    = "shared-prod"
+    region = "eu-west-2"
   }
   required_providers {
     aws = {
@@ -12,10 +12,10 @@ terraform {
 }
 
 provider "aws" {
-  region  = "eu-west-2"
+  region = "eu-west-2"
 }
 
 module "backend-apig" {
-  source               = "github.com/TheSentimentalists/SentimentalistsApp-Infrastructure/terraform/modules/apigateway"
-  apig_name            = "sentimentalists-prod"
+  source    = "github.com/TheSentimentalists/SentimentalistsApp-Infrastructure/terraform/modules/apigateway"
+  apig_name = "sentimentalists-prod"
 }
