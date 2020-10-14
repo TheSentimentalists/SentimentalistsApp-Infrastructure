@@ -24,7 +24,20 @@ resource "aws_iam_role" "lambda_exec" {
       },
       "Effect": "Allow",
       "Sid": ""
-    }
+    },
+    {
+            "Effect": "Allow",
+            "Action": [
+                "secretsmanager:GetResourcePolicy",
+                "secretsmanager:GetSecretValue",
+                "secretsmanager:DescribeSecret",
+                "secretsmanager:ListSecretVersionIds"
+            ],
+            "Resource": [
+                "arn:aws:secretsmanager:eu-west-2:481434056562:secret:prod/getCredibilityScore/GATEKey-uRdNls",
+                "arn:aws:secretsmanager:eu-west-2:481434056562:secret:prod/test-mXktSh"
+            ]
+        }
   ]
 }
 EOF
