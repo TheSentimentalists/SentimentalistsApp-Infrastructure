@@ -24,8 +24,22 @@ resource "aws_iam_role" "lambda_exec" {
       },
       "Effect": "Allow",
       "Sid": ""
-    },
-    {
+    }
+  ]
+}
+EOF
+
+}
+
+resource "aws_iam_role_policy" "lambda_exec" {
+  name = "test_policy"
+  role = aws_iam_role.lambda_exec.id
+
+  policy = <<-EOF
+  {
+    "Version": "2012-10-17",
+    "Statement": [
+      {
             "Effect": "Allow",
             "Action": [
                 "secretsmanager:GetResourcePolicy",
@@ -37,9 +51,24 @@ resource "aws_iam_role" "lambda_exec" {
                 "arn:aws:secretsmanager:eu-west-2:481434056562:secret:prod/getCredibilityScore/GATEKey-uRdNls",
                 "arn:aws:secretsmanager:eu-west-2:481434056562:secret:prod/test-mXktSh"
             ]
-        }
-  ]
-}
-EOF
+      },
+      {
+            "Effect": "Allow",
+            "Action": "logs:CreateLogGroup",
+            "Resource": "arn:aws:logs:eu-west-2:481434056562:*"
+      },
+      {
+            "Effect": "Allow",
+            "Action": [
+                "logs:CreateLogStream",
+                "logs:PutLogEvents"
+            ],
+            "Resource": [
+                "arn:aws:logs:eu-west-2:481434056562:log-group:*"
+            ]
+      }
 
+    ]
+  }
+  EOF
 }
