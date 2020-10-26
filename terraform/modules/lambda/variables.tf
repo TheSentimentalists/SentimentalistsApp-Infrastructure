@@ -14,8 +14,11 @@ variable "lambda_handler" {
   default = "lambda_function.lambda_handler"
 }
 
-# Payload
-variable "lambda_payload" {
+# S3 Bucket and Key
+variable "s3_bucket" {
   type    = string
-  default = "payload.zip"
+}
+
+variable "s3_key" {
+  type    = string
 }
