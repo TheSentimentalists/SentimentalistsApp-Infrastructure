@@ -4,8 +4,8 @@ resource "aws_lambda_function" "lambda" {
   runtime       = "python3.8"
   timeout       = 10
 
-  filename         = var.lambda_payload
-  source_code_hash = filebase64sha256(var.lambda_payload)
+  s3_bucket = var.s3_bucket
+  s3_key    = var.s3_key
 
   role = aws_iam_role.lambda_exec.arn
 }
