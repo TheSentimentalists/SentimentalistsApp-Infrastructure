@@ -2,7 +2,7 @@ resource "aws_lambda_function" "lambda" {
   function_name = "app-${var.lambda_name}-${var.lambda_stage}"
   handler       = var.lambda_handler
   runtime       = "python3.8"
-  timeout       = 10
+  timeout       = 30
 
   s3_bucket = var.s3_bucket
   s3_key    = var.s3_key
